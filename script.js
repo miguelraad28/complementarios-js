@@ -6,7 +6,7 @@ do{
     numero1 = parseFloat(prompt("Primer número del rango a sumar:"));
     numero2 = parseFloat(prompt("Último número del rango a sumar:"));
     if(isNaN(numero1) || isNaN(numero2)){
-        alert("Necesito que indiques valores numéricos.")
+        alert("Necesito que indiques valores numéricos.");
     }
     else{
     }
