@@ -1,20 +1,21 @@
-let numero1, numero2, acumulador, nombre
-
-nombre = prompt("Bienvenido, cómo te llamas?");
-alert("Con este pequeño ciclo, sabrás la suma de todos los numeros de un rango.");
-do{
-    numero1 = parseFloat(prompt("Primer número del rango a sumar:"));
-    numero2 = parseFloat(prompt("Último número del rango a sumar:"));
-    if(isNaN(numero1) || isNaN(numero2)){
-        alert("Necesito que indiques valores numéricos.");
+// VARIABLES A USAR
+let nombre, nota1, nota2, nota3, respuesta, promedio
+// FUNCION FLECHA
+const promediar = (nota1, nota2, nota3) => (nota1 + nota2 + nota3) / 3;
+// SOLICITUD DE NOMBRE DE ALUMNO
+nombre = prompt("Hola estudiante, ¿Cuál es tu nombre?")
+// SOLICITUD DE NOTAS
+do {
+    nota1 = parseInt(prompt("Escriba la primera nota"));
+    nota2 = parseInt(prompt("Escriba la segunda nota"));
+    nota3 = parseInt(prompt("Escriba la tercera nota"));
+    if((isNaN(nota1)) || (isNaN(nota2) || isNaN(nota3))){
+        alert("Escriba notas válidas.");
     }
-    else{
+} while ((isNaN(nota1)) || (isNaN(nota2) || isNaN(nota3))){
+    respuesta = prompt("¿Desea promediar sus notas?").toLowerCase();
+    if(respuesta === "si"){
+        // MENSAJE + LLAMADO DE LA FUNCIÓN
+        alert(`${nombre}, el promedio de tus notas es ` + promediar(nota1, nota2, nota3))
     }
-}
-while(isNaN(numero1) || (isNaN(numero2))){
-    acumulador = 0
-    for(numero1 = numero1; numero1 <= numero2; numero1++){
-    acumulador += numero1;
-    }
-    alert(`${nombre}, la suma del rango de numeros es igual a ${acumulador}`);
 }
