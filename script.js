@@ -1,65 +1,71 @@
-function funcionInteresesCuotas(cuotas, montoPrestamo){
-    switch(cuotas){
-        case (cuotas == 1) || (cuotas < 6):
-            pagoTotal = montoPrestamo * 1.10;
-            break;
-        case (cuotas == 6) || (cuotas < 9):
-            pagoTotal = montoPrestamo * 1.13;
-            break;
-        case (cuotas == 9) || (cuotas < 12):
-            pagoTotal = montoPrestamo * 1.16;
-            break;
-        case (cuotas == 12) || (cuotas < 16):
-            pagoTotal = montoPrestamo * 1.20;
-            break;
-        case (cuotas == 16) || (cuotas < 19):
-            pagoTotal = montoPrestamo * 1.24;
-            break;
-        case (cuotas == 19) || (cuotas < 25):
-            pagoTotal = montoPrestamo * 1.30;
-            break;
+let nombre, apellido, dni, ingresosMensuales, prestamoMaximo, sumaPagoMaximo, pagoMaximo, interesesTotales, pagoTotal, cuotasMinimas, cuotas, pagoCuota, respuesta, condicion1, condicion2
+function funcionInteresesCuotas(cuotas, montoPrestamo) {
+    let montoPrestamoDuplicado = montoPrestamo
+    if(cuotas === 1 || cuotas < 6){
+        interesesTotales = (montoPrestamo * 1.10) - montoPrestamoDuplicado;
+    }else if(cuotas === 6 || cuotas < 9){
+        interesesTotales = (montoPrestamo * 1.13) - montoPrestamoDuplicado;
+    }else if(cuotas === 9 || cuotas < 12){
+        interesesTotales = (montoPrestamo * 1.17) - montoPrestamoDuplicado;
+    }else if(cuotas === 12 || cuotas < 19){
+        interesesTotales = (montoPrestamo * 1.22) - montoPrestamoDuplicado;
+    }else{
+        interesesTotales = (montoPrestamo * 1.30) - montoPrestamoDuplicado;
     }
-    return pagoTotal
+    return interesesTotales;
 }
-let nombre, dni, ingresosMensuales, montoPrestamo, prestamoMaximo, pagoMaximo, cuotas, cuotasMinimas, sumaPagoMaximo, pagoCuotas, pagoTotal, respuestaFinal, booleanFinal
-alert("Simulador de prestamo según ingresos mensuales. Podrás solicitar un préstamo 4 veces mayor a tus ingresos mensuales con una cuota máxima mensual del 35% de tus ingresos.")
+alert("Simulador de préstamo. Solicitud de hasta 4 veces tus ingresos y pago máximo mensual del 30%.");
+nombre = prompt("Ingrese su nombre");
 do {
-    nombre = prompt("Ingrese su nombre y apellido");
     dni = parseInt(prompt("Ingrese su Nº de DNI"));
     ingresosMensuales = parseFloat(prompt("Ingrese sus ingresos mensuales"));
     if((dni < 1000000 || dni > 100000000) || isNaN(dni)){
         alert("Ingrese el DNI correctamente");
-    }
+    }else{}
     if(isNaN(ingresosMensuales)){
         alert("Ingrese correctamente sus ingresos");
+    }else if(ingresosMensuales < 40000){
+        alert("Sus ingresos mensuales mínimos para acceder al prestamo deben superar los $40000 pesos");
     }else{
         prestamoMaximo = ingresosMensuales * 4;
-        pagoMaximo = ingresosMensuales * 0.35;
+        pagoMaximo = ingresosMensuales * 0.30;
     }
-} while ((isNaN(dni) || isNaN(dni)) || ((dni < 1000000) || (dni > 100000000)) || (isNaN(ingresosMensuales)));
+} while ((isNaN(dni) || isNaN(dni)) || ((dni < 1000000) || (dni > 100000000)) || ((isNaN(ingresosMensuales)) || (ingresosMensuales < 40000)));
 do {
-    montoPrestamo = parseFloat(prompt(`¿Qué cantidad desea solicitar? Su máximo es de $${prestamoMaximo}.`));
+    montoPrestamo = parseFloat(prompt(`¿Qué cantidad desea solicitar? Su máximo es de $${prestamoMaximo}`));
+    if(montoPrestamo > prestamoMaximo){
+        alert(`Su préstamo no puede exceder ${prestamoMaximo}`);
+        condicion1 = true
+    }else{
+        condicion1 = false
+    }
     for(sumaPagoMaximo = pagoMaximo; sumaPagoMaximo <= montoPrestamo; sumaPagoMaximo += pagoMaximo){
         if(sumaPagoMaximo <= montoPrestamo){
             cuotasMinimas = sumaPagoMaximo / pagoMaximo
         }else{}
     }
-    cuotas = parseInt(prompt(`Para pagar su préstamo, deberá ser en un mínimo de ${cuotasMinimas} cuotas o más. ¿En cuantas cuotas desea realizar el pago?`));
+} while (condicion1);
+do {
+    cuotas = parseInt(prompt(`¿En cuantas cuotas desea realizar el pago? Minimas de ${cuotasMinimas} y el máximo es de 24`));
     if(cuotas < cuotasMinimas){
-        alert(`Sr/a, le repetimos que el minimo de cuotas debe ser de ${cuotasMinimas}.`);
+        alert(`Las cuotas minimas son de ${cuotasMinimas}`);
     }else if(isNaN(cuotas)){
-        alert("Ingrese las cuotas correctamente en valor numérico.");
+        alert("Por favor ingrese las cuotas en valor numérico");
+    }else if(cuotas > 24){
+        alert("El máximo de cuotas es de 24")
     }else{
-        pagoCuotas = montoPrestamo / cuotas;
         funcionInteresesCuotas(cuotas, montoPrestamo);
-        respuestaFinal = prompt(`Sr/a, su préstamo tendrá un monto total a pagar de $${pagoTotal}, en un numero de ${cuotas} cuotas. Serían pagos mensuales de $${pagoCuotas}. Si acepta el préstamo por favor escriba SI`).toLowerCase();
-        if(respuestaFinal == "si"){
-            alert("Su prestamo ha sido aprobado.")
-            booleanFinal = false;
-        }else if(respuesta == "no"){
-            alert("Bueno, en otra oportunidad")
-        }else{
-            alert("Lo siento no comprendi la respuesta.")
-        }
+        pagoTotal = montoPrestamo + interesesTotales
+        pagoCuota = pagoTotal / cuotas
+        condicion2 = false;
     }
-} while (booleanFinal);
+    alert(`${nombre}, su préstamo de $${montoPrestamo}, con intereses de $${interesesTotales}, le queda en un total de $${pagoTotal} en ${cuotas} cuotas de $${pagoCuota}`);
+    respuesta = prompt("Si esta de acuerdo con el prestamo, ingrese si").toLowerCase();
+    if(respuesta === "si"){
+        alert("Perfecto, pronto se te depositará");
+    }else{
+        alert("Bueno, en otro momento");
+    }
+} while (condicion2);
+
+
