@@ -1,4 +1,3 @@
-
 // Constructor
 class Producto{
     constructor(nombre, marca, precio, stock){
