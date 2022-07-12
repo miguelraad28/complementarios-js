@@ -1,6 +1,7 @@
+
 // Constructor
 class Producto{
-    constructor(nombre = "Predeterminado", marca = "Predeterminado", precio = 1, stock = 1){
+    constructor(nombre, marca, precio, stock){
     this.nombre = nombre;
     this.marca = marca;
     this.precio = precio;
@@ -16,25 +17,34 @@ function buscarProducto(productos){
         console.log(productoBuscado)
     }
 }
-function buscarProductos(productos){
-    let precio = parseFloat(prompt("Ingrese un precio"))
-    let productosBuscados = productos.filter(producto => producto.precio >= precio)
-    if(productosBuscados.length == 0){
-        console.log("No hay productos con dichas caracteristicas")
-    }else{
-        console.log(productosBuscados)
-    }
+function buscarMarcas(productos){
+    let marcaProducto = prompt("Ingrese la marca específica para filtrar.");
+    const productosMarca = productos.filter(producto => producto.marca === marcaProducto)
+    productosMarca.forEach(producto => {
+    console.log(producto)
+    })
 }
 function ordenarProductos(productos){
-    let metodoOrdenamiento = prompt("Ingrese 1 para ordenar de menor a mayor. 2 Para ordenar de mayor a menor")
-    if(metodoOrdenamiento == 1){
-        console.log(productos.sort((a,b) => a.precio-b.precio))
-    }else if(metodoOrdenamiento == 2){
-        console.log(productos.sort((a,b) => b.precio-a.precio))
+    let metodoOrdenamiento = parseInt(prompt(`Responda para:
+    1 - Ordenar precio de menor a mayor
+    2 - Ordenar precio de mayor a menor`))
+    if(metodoOrdenamiento === 1){
+        const precioMenorMayor = productos
+        precioMenorMayor.sort((a,b) => a.precio-b.precio)
+        precioMenorMayor.forEach(producto =>{
+            console.log(producto)
+        })
+    }else if(metodoOrdenamiento === 2){
+        const precioMayorMenor = productos
+        precioMayorMenor.sort((a,b) => b.precio-a.precio)
+        precioMayorMenor.forEach(producto =>{
+            console.log(producto)
+        })
     }
 }
-const productos = []
+// Creación de objetos e inclusión en ARRAY
 let continua = true
+const productos = []
 do {
     let nombre, marca, precio, stock
     do {
@@ -49,12 +59,12 @@ do {
     productos.push(producto);
     continua = prompt ("¿Desea ingresar mas productos?").toLowerCase();
 } while (continua != "no");
-
+// Modos de filtración y busqueda
 let respuesta
 do {
     respuesta = parseInt(prompt(`Ingrese para:
     1 - Buscar un producto
-    2 - Buscar productos por precio
+    2 - Buscar productos por marca
     3 - Ordenar de menor a mayor
     `))
 } while (respuesta <1 || respuesta >3);
@@ -63,7 +73,7 @@ switch(respuesta){
         buscarProducto(productos)
         break;
     case 2:
-        buscarProductos(productos)
+        buscarMarcas(productos)
         break;
     case 3:
         ordenarProductos(productos)
