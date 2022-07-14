@@ -9,7 +9,7 @@
         { nombre : "Comidas", precio: 600} ,
     ]
 
-
+    let carrito = []
     let respuesta
     
    do {
@@ -26,15 +26,8 @@
         }
        }
    while (respuesta != "si")
- /*     alert (todosLosProductos.join(" - "))
-     }
-   (seleccionar == "no" ) {
-    alert ("gracias por visitarnos!")
-    }
-    
 
-    //creo un bucle con while para que pueda elegir entre los productos
-    //y una variable cantidad nueva para que ingrese numeros de cuadernos.
+/*
    while (seleccionar != "no")
   {
     let producto = prompt("Agrega un azafrán a tu carrito")
@@ -42,15 +35,15 @@
 
     while (producto == "Floral" || producto == "Constelacion"||producto == "Bosque"|| producto == "Ciudad"|| producto == "Comidas")
     switch(producto) {
-      case "Floral": precio = 1000;
+      case "Floral": carrito.push;
       break;
-      case "Constelacion": precio = 800;
+      case "Constelacion": carrito.push;
       break;
-      case "Bosque": precio = 1200;
+      case "Bosque": carrito.push;
       break;
-      case "Ciudad": precio = 1400;
+      case "Ciudad": carrito.push;
       break;
-      case "Comidas": precio = 600;
+      case "Comidas": carrito.push;
       break;
       default:
         break;
