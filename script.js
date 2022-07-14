@@ -6,6 +6,16 @@
             this.precio = precio
         }
     }
+    class ProductoEnCarrito{
+        constructor(nombre, precio, cantidad){
+            this.nombre = nombre
+            this.precio = precio
+            this.cantidad = cantidad
+        }
+        añadirProducto(sumarCantidad){
+        this.cantidad = sumarCantidad
+        }
+    }
     const producto1 = new Producto("Floral", 1000)
     const producto2 = new Producto("Constelación", 800)
     const producto3 = new Producto("Ciudad", 1200)
@@ -13,7 +23,7 @@
     const producto5 = new Producto("Comidas", 600)
 
     const productos = [producto1, producto2, producto3, producto4, producto5]
-    let carrito = []
+    const carrito = []
     let respuesta
     
    do {
@@ -30,20 +40,46 @@
         }
        }
    while (respuesta != "si")
-   switch(true) {
-    case "Floral": carrito.push(productos[0]);
+
+   let respuestaProducto
+    let respuestaAñadirMas
+    let cantidadAComprar
+
+   do{
+   respuestaProducto = prompt("que producto quiere añadir?").toLowerCase()
+    
+   switch(respuestaProducto) {
+    case "floral": const productoEnCarrito1 = new ProductoEnCarrito("Floral", 1000, 0)
+    carrito.push(productoEnCarrito1)
+    cantidadAComprar = prompt("Cuantos queres comprar?")
+    productoEnCarrito1.añadirProducto(cantidadAComprar)
     break;
-    case "Constelacion": carrito.push;
+    case "constelacion": const productoEnCarrito2 = new ProductoEnCarrito("Constelacion", 800, 0)
+    carrito.push(productoEnCarrito2)
+    cantidadAComprar = prompt("Cuantos queres comprar?")
+    productoEnCarrito2.añadirProducto(cantidadAComprar)
     break;
-    case "Bosque": carrito.push;
+    case "bosque": const productoEnCarrito3 = new ProductoEnCarrito("Ciudad", 1200, 0)
+    carrito.push(productoEnCarrito3)
+    cantidadAComprar = prompt("Cuantos queres comprar?")
+    productoEnCarrito3.añadirProducto(cantidadAComprar)
     break;
-    case "Ciudad": carrito.push;
+    case "ciudad": const productoEnCarrito4 = new ProductoEnCarrito("Bosque", 1400, 0)
+    carrito.push(productoEnCarrito4)
+    cantidadAComprar = prompt("Cuantos queres comprar?")
+    productoEnCarrito4.añadirProducto(cantidadAComprar)
     break;
-    case "Comidas": carrito.push;
+    case "comidas": const productoEnCarrito5 = new ProductoEnCarrito("Comidas", 600, 0)
+    carrito.push(productoEnCarrito5)
+    cantidadAComprar = prompt("Cuantos queres comprar?")
+    productoEnCarrito5.añadirProducto(cantidadAComprar)
     break;
     default:
       break;
   }
+
+  respuestaAñadirMas = prompt("Desea añadir otro producto?")
+    }while(respuestaAñadirMas !="no")
   console.log(carrito)
 /*
    while (seleccionar != "no")
