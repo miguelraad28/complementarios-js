@@ -1,14 +1,18 @@
 //Nombre de tapas:
     //un array de productos(cada objeto con su nombre y precio) y un array vacio.
-    const productos = [ 
-    
-        { nombre : "Floral", precio: 1000} ,
-        { nombre : "Costelacion", precio: 800} ,
-        { nombre : "Ciudad", precio: 1200} ,
-        { nombre : "Bosque", precio: 1400} ,
-        { nombre : "Comidas", precio: 600} ,
-    ]
+    class Producto{
+        constructor(nombre, precio){
+            this.nombre = nombre
+            this.precio = precio
+        }
+    }
+    const producto1 = new Producto("Floral", 1000)
+    const producto2 = new Producto("Constelación", 800)
+    const producto3 = new Producto("Ciudad", 1200)
+    const producto4 = new Producto("Bosque", 1400)
+    const producto5 = new Producto("Comidas", 600)
 
+    const productos = [producto1, producto2, producto3, producto4, producto5]
     let carrito = []
     let respuesta
     
@@ -26,7 +30,21 @@
         }
        }
    while (respuesta != "si")
-
+   switch(true) {
+    case "Floral": carrito.push(productos[0]);
+    break;
+    case "Constelacion": carrito.push;
+    break;
+    case "Bosque": carrito.push;
+    break;
+    case "Ciudad": carrito.push;
+    break;
+    case "Comidas": carrito.push;
+    break;
+    default:
+      break;
+  }
+  console.log(carrito)
 /*
    while (seleccionar != "no")
   {
@@ -34,20 +52,7 @@
     let precio = 0 
 
     while (producto == "Floral" || producto == "Constelacion"||producto == "Bosque"|| producto == "Ciudad"|| producto == "Comidas")
-    switch(producto) {
-      case "Floral": carrito.push;
-      break;
-      case "Constelacion": carrito.push;
-      break;
-      case "Bosque": carrito.push;
-      break;
-      case "Ciudad": carrito.push;
-      break;
-      case "Comidas": carrito.push;
-      break;
-      default:
-        break;
-    }
+
 
     let cantidad = parseInt(prompt("¿cuantos azafranes deseas?"))
 
