@@ -3,9 +3,10 @@
     padding: 0;
     line-height: normal;
 }
-.div-padre-productos{
+#div-padre-productos{
     display: grid;
-    grid-template-columns: repeat(auto-git, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-rows: auto;
     gap: 2em;
     justify-content: center;
 }
@@ -14,6 +15,7 @@
 }
 .div-producto img{
     border-radius: 12px;
+    width: 100%;
 }
 .div-producto img:hover{
     transform: scale(1.05);
